@@ -14,7 +14,7 @@ exports.server = new OAuthServer({
         scope: scope
       }, config.services.auth.jwtSecret, {
         expiresIn: '1d'
-      }) // todo throw if not defined
+      })
     },
     async generateRefreshToken(client, user, scope) {
       // todo not generate but save to db
@@ -22,7 +22,7 @@ exports.server = new OAuthServer({
         type: 'refreshToken',
         userId: user.id,
         scope: scope
-      }, config.services.auth.jwtSecret) // todo throw if not defined
+      }, config.services.auth.jwtSecret)
     },
     getClient(clientId, clientSecret) {
       if (clientId === 'internal') {

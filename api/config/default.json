@@ -14,7 +14,7 @@
       "debug": true,
       "port": 3010,
       "passwordHashRounds": 5,
-      "jwtSecret": null
+      "jwtSecret": "default_jwt_secret_change"
     }
   }
 }
