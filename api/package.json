@@ -1,0 +1,36 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "easypay test task api",
+  "main": "index.js",
+  "scripts": {
+    "service:phone": "node phone.service.js",
+    "service:phone:dev": "nodemon phone.service.js",
+    "service:auth": "node auth.service.js",
+    "service:auth:dev": "nodemon auth.service.js",
+    "db:seeds": "node scripts/generateSeeds.js",
+    "db:schema": "node scripts/generateSchema.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^1.0.3",
+    "body-parser": "^1.18.2",
+    "config": "^1.28.1",
+    "credential-plus": "^2.0.5",
+    "credential-plus-bcrypt": "^2.0.1",
+    "eslint": "^4.11.0",
+    "express": "^4.16.2",
+    "express-validator": "^4.3.0",
+    "google-libphonenumber": "^3.0.8",
+    "jsonwebtoken": "^8.1.0",
+    "oauth2-server": "^3.0.0",
+    "pg": "^6.4.2",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.22.6"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1"
+  }
+}
