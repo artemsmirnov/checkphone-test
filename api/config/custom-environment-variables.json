@@ -1,0 +1,10 @@
+{
+    "db": {
+      "name": "DB_NAME",
+      "host": "DB_HOST",
+      "port": "DB_PORT",
+      "user": "DB_USER",
+      "pass": "DB_PASS"
+    }
+  }
+  

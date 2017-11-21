@@ -2,3 +2,5 @@ api/node_modules
 api/config/local*
 
 ui/node_modules
+
+data

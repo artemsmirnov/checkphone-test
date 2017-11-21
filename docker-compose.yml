@@ -1,0 +1,71 @@
+version: '3'
+services:
+  state:
+    build: api
+    image: phonecheck/api
+    command: sh -c "npm run db:schema && npm run db:seeds"
+    volumes:
+      - ./api:/usr/app/
+      - /usr/app/node_modules
+    depends_on:
+      - postgres
+    environment:
+      DB_HOST: postgres
+  phone-api:
+    build: api
+    image: phonecheck/api
+    command: npm run service:phone:dev
+    volumes:
+      - ./api:/usr/app/
+      - /usr/app/node_modules
+    depends_on:
+      - postgres
+    environment:
+      DB_HOST: postgres
+  auth-api:
+    build: api
+    image: phonecheck/api
+    command: npm run service:auth:dev
+    volumes:
+      - ./api:/usr/app/
+      - /usr/app/node_modules
+    depends_on:
+      - postgres
+    environment:
+      DB_HOST: postgres
+  ui:
+    build: ui
+    image: phonecheck/ui
+    command: npm start
+    volumes:
+      - ./ui:/usr/app/
+      - /usr/app/node_modules
+    ports:
+      - ${PHONECHEK_UI_PORT:-8080}:8080
+    depends_on:
+      - phone-api
+    environment:
+      API_PHONES: http://phone-api:3000
+  admin-ui:
+    build: admin-ui
+    image: phonecheck/admin-ui
+    command: npm start
+    volumes:
+      - ./admin-ui:/usr/app/
+      - /usr/app/node_modules
+    ports:
+      - ${PHONECHEK_ADMIN_UI_PORT:-8090}:8090
+    depends_on:
+      - phone-api
+      - auth-api
+    environment:
+      API_PHONES: http://phone-api:3000
+      API_AUTH: http://auth-api:3010
+  postgres:
+    image: postgres:10-alpine
+    volumes:
+      - ./data:/var/lib/postgresql/data/pgdata
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: phonecheck-dev
+      PGDATA: /var/lib/postgresql/data/pgdata

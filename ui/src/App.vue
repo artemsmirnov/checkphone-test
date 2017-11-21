@@ -6,9 +6,10 @@
     ></input>
     <button @click="check({phonenumber})">check</button>
     <div v-if="checkError" class="error">{{checkError}}</div>
-    <div v-else>
-      <div v-if="phonenumberExists">exists</div>
-      <div v-else>not exists</div>
+    <div v-if="checkedPhonenumber && !checkError">
+      {{checkedPhonenumber}}
+      <span v-if="phonenumberExists">exists</span>
+      <span v-else>doesn't exist</span>
     </div>
   </div>
 </template>
