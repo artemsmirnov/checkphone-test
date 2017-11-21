@@ -1,10 +1,12 @@
 <template>
   <div id="app">
-    <input type="tel"
-           placeholder="Phonenumber"
-           v-model="phonenumber"
-    ></input>
-    <button @click="check({phonenumber})">check</button>
+    <form @submit.prevent="check({phonenumber})">
+      <input type="tel"
+            placeholder="Phonenumber"
+            v-model="phonenumber"
+      ></input>
+      <input type="submit" value="check"></input>
+    </form>
     <div v-if="checkError" class="error">{{checkError}}</div>
     <div v-if="checkedPhonenumber && !checkError">
       {{checkedPhonenumber}}
